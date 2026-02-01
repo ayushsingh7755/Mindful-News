@@ -1,0 +1,419 @@
+/* GENERAL STYLES & TYPOGRAPHY */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --color-dark-bg: #1a1a2e; /* Deeper dark background */
+  --color-card-bg: #21213e; /* Slightly lighter for cards */
+  --color-text: #e0e0e0;
+  --color-light-text: #b0b0d0;
+  --color-primary: #5e72e4; /* Vibrant purple-blue */
+  --color-positive: #2dce89; /* Bright green */
+  --color-neutral: #ffd600; /* Rich gold */
+  --color-negative: #fb6340; /* Warm orange-red */
+  --color-border: #3a3a5a; /* Darker border */
+  --color-highlight: #34345c; /* Hover/focus highlight */
+  --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background: var(--color-dark-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+.App {
+  padding: 25px;
+  max-width: 1400px; /* Wider layout */
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--color-text);
+  text-align: center;
+  font-size: 3em; /* Larger heading */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Text shadow */
+  margin-bottom: 10px;
+  background: linear-gradient(45deg, var(--color-primary), #6f42c1); /* Gradient title */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  text-align: center;
+  color: var(--color-light-text);
+  margin-bottom: 40px;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--color-border), transparent);
+  margin: 40px 0;
+}
+
+/* --- FILTER CONTROLS --- */
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Increased gap */
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #2a2a4a; /* Lighter dark background for the bar */
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0 8px 25px var(--color-shadow);
+  animation: slideInFromTop 0.8s ease-out; /* Entry animation for filter bar */
+}
+
+.filters label {
+  font-weight: 500;
+  color: var(--color-light-text);
+  text-transform: uppercase;
+  font-size: 0.95em;
+  letter-spacing: 0.5px;
+}
+
+.filters select {
+  padding: 12px 20px; /* Increased padding */
+  border-radius: 10px; /* More rounded */
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth and slightly bouncy */
+  min-width: 160px;
+  font-size: 1em;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.filters select:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-highlight);
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.filters select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(94, 114, 228, 0.5), inset 0 1px 3px rgba(0, 0, 0, 0.3); /* Focus glow */
+  border-color: var(--color-primary);
+}
+
+.sentiment-btn {
+  padding: 12px 25px; /* Larger buttons */
+  border: none;
+  border-radius: 25px; /* More rounded pills */
+  background-color: var(--color-highlight); /* Default background */
+  color: var(--color-light-text);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Enhanced transition */
+  font-weight: 600;
+  font-size: 1em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden; /* For ripple effect, if added */
+}
+
+.sentiment-btn:hover:not(.active) {
+  background-color: #4a4a70;
+  transform: translateY(-3px) scale(1.02); /* Lift and slight grow */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  color: var(--color-text); /* Brighter text on hover */
+}
+
+/* Active Button Styles with glow */
+.sentiment-btn.active {
+  color: white; /* Ensure text is white for active buttons */
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.7); /* Stronger glow */
+  transform: translateY(-2px);
+}
+.sentiment-btn:nth-child(4).active { /* Positive */
+  background-color: var(--color-positive); 
+  box-shadow: 0 0 20px rgba(45, 206, 137, 0.7);
+}
+.sentiment-btn:nth-child(5).active { /* Neutral */
+  background-color: var(--color-neutral); 
+  color: #333; /* Darker text for visibility */
+  box-shadow: 0 0 20px rgba(255, 214, 0, 0.7);
+}
+.sentiment-btn:nth-child(6).active { /* Negative */
+  background-color: var(--color-negative); 
+  box-shadow: 0 0 20px rgba(251, 99, 64, 0.7);
+}
+.sentiment-btn:nth-child(3).active { /* All */
+  background-color: var(--color-primary); 
+  box-shadow: 0 0 20px rgba(94, 114, 228, 0.7);
+}
+
+/* --- NEWS FEED GRID & CARD ANIMATIONS --- */
+.news-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); /* Larger cards */
+  gap: 30px; /* Increased gap */
+  margin-top: 30px;
+}
+
+.news-card {
+  padding: 25px;
+  border-radius: 15px;
+  text-align: left;
+  background-color: var(--color-card-bg);
+  box-shadow: 0 6px 20px var(--color-shadow);
+  /* REFINED TRANSITION: Use 'ease-in-out' for a soft start and end */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+  border-left: 6px solid transparent; 
+  overflow: hidden; 
+  transform: translateY(20px); 
+  opacity: 0; 
+  animation: fadeInPop 0.6s ease-out forwards; 
+  animation-delay: var(--animation-delay);
+}
+
+/* Staggered animation delays for cards */
+.news-feed .news-card:nth-child(1) { --animation-delay: 0.1s; }
+.news-feed .news-card:nth-child(2) { --animation-delay: 0.2s; }
+.news-feed .news-card:nth-child(3) { --animation-delay: 0.3s; }
+.news-feed .news-card:nth-child(4) { --animation-delay: 0.4s; }
+.news-feed .news-card:nth-child(5) { --animation-delay: 0.5s; }
+.news-feed .news-card:nth-child(6) { --animation-delay: 0.6s; }
+.news-feed .news-card:nth-child(7) { --animation-delay: 0.7s; }
+/* ... add more as needed, or use JS for dynamic delays */
+
+
+.news-card:hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition: ease-in-out .4s;
+  /* INCREASED SCALE AND LIFT: More noticeable size change (4%) and lift */
+  transform: translateY(-8px) scale(1.04); 
+  /* Enhanced shadow for depth when raised */
+  box-shadow: 0 20px 50px var(--color-shadow), 
+              0 0 15px rgba(94, 114, 228, 0.4); /* Stronger blue halo on hover */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sentiment-badge {
+  padding: 6px 12px;
+  border-radius: 20px; /* Pill shape for badge */
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.source-name {
+  font-size: 0.9em;
+  color: var(--color-light-text);
+  font-weight: 400;
+}
+
+.news-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.45em;
+  line-height: 1.4;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.description {
+  font-size: 1em;
+  color: var(--color-light-text);
+  min-height: 60px; /* Ensure cards are uniform height for descriptions */
+  line-height: 1.6;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative; /* For arrow animation */
+}
+
+.read-more::after {
+  content: ' →';
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.read-more:hover {
+  color: #8c9eff; /* Lighter primary color on hover */
+}
+
+.read-more:hover::after {
+  transform: translateX(5px); /* Move arrow on hover */
+}
+
+/* --- SENTIMENT SPECIFIC STYLING --- */
+.card-positive {
+  border-left-color: var(--color-positive);
+  background-color: #263c3a; /* Darker green background */
+}
+.card-positive .sentiment-badge {
+  background-color: var(--color-positive);
+}
+
+.card-negative {
+  border-left-color: var(--color-negative);
+  background-color: #3c2626; /* Darker red background */
+}
+.card-negative .sentiment-badge {
+  background-color: var(--color-negative);
+}
+
+.card-neutral {
+  border-left-color: var(--color-neutral);
+  background-color: #3c3a26; /* Darker amber background */
+}
+.card-neutral .sentiment-badge {
+  background-color: var(--color-neutral);
+  color: #333; /* Darker text for visibility on amber */
+}
+
+/* --- STATUS AND ERROR MESSAGES --- */
+.status-message {
+  grid-column: 1 / -1; 
+  text-align: center;
+  padding: 40px;
+  font-size: 1.6em;
+  color: var(--color-light-text);
+  font-weight: 400;
+  animation: fadeIn 0.8s ease-out;
+}
+.error-message {
+  color: var(--color-negative);
+  font-weight: bold;
+  border: 1px solid var(--color-negative);
+  background-color: #3a2b2b;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(244, 67, 54, 0.2);
+}
+
+/* --- LOADING SPINNER --- */
+.status-message:contains("Loading") { /* A pseudo-selector, may need JS to target specific loading message */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.status-message::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* --- KEYFRAME ANIMATIONS --- */
+@keyframes fadeInPop {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 992px) {
+  .App {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  .filters {
+    gap: 10px;
+    padding: 15px;
+  }
+  .news-feed {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Smaller cards on tablets */
+    gap: 20px;
+  }
+  .news-card h3 {
+    font-size: 1.25em;
+  }
+  .sentiment-btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2em;
+    word-break: break-word; /* Prevent overflow on very small screens */
+  }
+  .tagline {
+    font-size: 1em;
+  }
+  .filters {
+    flex-direction: column; /* Stack filters vertically */
+    padding: 15px 10px;
+    gap: 10px;
+  }
+  .filters select, .sentiment-btn {
+    width: 100%; /* Full width for better touch on mobile */
+    min-width: unset;
+  }
+  .news-feed {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 15px;
+  }
+  .news-card {
+    padding: 18px;
+  }
+  .description {
+    min-height: unset; /* Allow description to collapse naturally */
+  }
+}
