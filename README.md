@@ -3,7 +3,7 @@
 ![React](https://img.shields.io/badge/React-20232a?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+
 
 > **MindfulNews** is a smart news aggregator designed to combat "doom-scrolling." By analyzing the sentiment of global headlines, it allows users to filter news based on their emotional preference—whether they want to see positive, neutral, or critical updates.
 
