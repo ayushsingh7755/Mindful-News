@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './App.css'; 
 
-const API_BASE_URL = 'http://localhost:5000/api/news/headlines';
+const API_BASE_URL = 'https://mindful-news.onrender.com/api/news/headlines';
 
 function App() {
   const [articles, setArticles] = useState([]);
