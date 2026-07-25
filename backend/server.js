@@ -8,7 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors()); // Allows frontend (port 3000) to talk to backend (port 5000)
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL?.split(",") || "*",
+    credentials: true,
+  }),
+); // Allows frontend (port 3000) to talk to backend (port 5000)
 app.use(express.json());
 
 // Database connection (Optional - remove this block if you skip MongoDB)
